@@ -1,0 +1,94 @@
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
+
+const app = express();
+const port = 80;
+
+let users = [];
+try {
+    users = JSON.parse(fs.readFileSync('./api/credentials.json', 'utf-8'));
+} catch (err) {
+    console.error('Erro ao carregar os usuários:', err);
+}
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'htdocs')));
+
+app.get('/app', (req, res) => { 
+    if (req.cookies.authCookie === 'valorDoCookie') {
+        res.send('Página do aplicativo');
+    } else {
+        res.redirect('/login');
+    }
+});
+
+app.post('/login', (req, res) => {
+    const { username, password } = req.body; 
+    
+    const user = users.find(user => user.username === username);
+    if (!user) {
+        return res.status(401).send('Usuário não encontrado');
+    }
+
+    bcrypt.compare(password, user.password, (err, result) => {
+        if (err) {
+            console.error('Erro ao comparar as senhas:', err);
+            return res.status(500).send('Erro ao comparar as senhas');
+        }
+        if (result) {
+            res.cookie('authCookie', 'valorDoCookie', { maxAge: 3600000, httpOnly: true });
+            res.redirect('/app');
+        } else {
+            res.status(401).send('Credenciais inválidas');
+            res.redirect('/login');
+        }
+    });
+});
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, './htdocs/login.html'));
+});
+
+app.get('/registro', (req, res) => {
+    res.sendFile(path.join(__dirname, "./htdocs/register.html"))
+})
+
+app.post('/registro', (req, res) => {
+    const { username, password } = req.body;
+
+    // Verifica se o usuário já existe
+    if (users.some(user => user.username === username)) {
+        return res.status(400).send('Usuário já existe');
+    }
+
+    // Hash da senha usando bcrypt
+    bcrypt.hash(password, 10, (err, hashedPassword) => {
+        if (err) {
+            console.error('Erro ao criptografar a senha:', err);
+            return res.status(500).send('Erro ao criptografar a senha');
+        }
+
+        // Adiciona o novo usuário ao banco de dados
+        users.push({ username, password: hashedPassword });
+
+        // Atualiza o arquivo JSON com o novo usuário
+        fs.writeFile('./api/credentials.json', JSON.stringify(users), (err) => {
+            if (err) {
+                console.error('Erro ao salvar o usuário no arquivo:', err);
+                return res.status(500).send('Erro ao salvar o usuário no arquivo');
+            }
+            // Retorna uma resposta de sucesso
+            res.send('Usuário registrado com sucesso');
+        });
+    });
+});
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+});

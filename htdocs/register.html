@@ -1,0 +1,43 @@
+<head>
+    <title>Register - Online To Do By Lumiert</title>
+</head>
+
+<body>
+    <div class="login-form">
+        <h1>Login</h1>
+        <input type="text" placeholder="User" id="username">
+        <input type="password" placeholder="Password" id="password">
+        <input type="button" value="Registro" id="loginButton">
+    </div>
+
+    <script>
+        document.getElementById('loginButton').addEventListener('click', function() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Criando um objeto JSON com as credenciais
+            const credentials = {
+                username: username,
+                password: password
+            };
+
+            // Enviando as credenciais para o servidor
+            fetch('/registro', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(credentials)
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text('Autorizado');
+                }
+                throw new Error('Erro ao enviar credenciais.');
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+        });
+    </script>
+</body>
