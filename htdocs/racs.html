@@ -18,9 +18,13 @@
     .reg-racs {
         margin: 0 auto;
         text-align: center;
+        width: 90vw;
+        overflow: scroll;
     }
 
-    .tabela-racs tr, th, td {padding: 10px;}
+    .tabela-racs tr, th, td {
+        padding: 10px;
+    }
 </style>
 
 <body>
@@ -40,6 +44,19 @@
                     <th>Responsável</th>
                     <th>Início At.</th>
                     <th>Término At.</th>
+                    <th>Instalação</th>
+                    <th>Manutenção</th>
+                    <th>Treinamento</th>
+                    <th>Impl. Sistemas</th>
+                    <th>Man. Preventiva</th>
+                    <th>Outros</th>
+                    <th>Relógio</th>
+                    <th>Catraca</th>
+                    <th>Nº de Série</th>
+                    <th>Obs</th>
+                    <th>Troca de Componente</th>
+                    <th>Conf. Proposta?</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody id="corpo-tabela"></tbody>
@@ -53,7 +70,7 @@
             $.get('/racs-json', function(data) {
                 // Para cada item nos dados recebidos, adicione uma linha na tabela
                 data.forEach(function(item) {
-                    $('#corpo-tabela').append('<tr><td>' + item.data + '</td><td>' + item.razao_social + '</td><td>' + item.cnpj + '</td><td>' + item.endereco + '</td><td>' + item.cidade + '</td><td>' + item.setor + '</td><td>' + item.tecnico + '</td><td>' + item.responsavel + '</td><td>' + item.hora_ini + '</td><td>' + item.hora_fim + '</td><td>' + item.instalacao_equip + '</td><td>');
+                    $('#corpo-tabela').append('<tr><td>' + item.data + '</td><td>' + item.razao_social + '</td><td>' + item.cnpj + '</td><td>' + item.endereco + '</td><td>' + item.cidade + '</td><td>' + item.setor + '</td><td>' + item.tecnico + '</td><td>' + item.responsavel + '</td><td>' + item.hora_ini + '</td><td>' + item.hora_fim + '</td><td>' + item.instalacao_equip + '</td><td>' + item.manutencao_equip + '</td><td>' + item.treinamento + '</td><td>' + item.ipl_sis + '</td><td>' + item.manutencao_prev + '</td><td>' + item.outros + '</td><td>' + item.relogio + '</td><td>' + item.catraca + '</td><td>' + item.n_serie + '</td><td>' + item.obs + '</td><td>' + item.troca_de_componente + '</td><td>' + item.total_conforme_proposta + '</td><td>' + 'R$' + item.total + '</td>');
                 }); 
             });
         });
