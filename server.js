@@ -6,10 +6,10 @@ const crypto = require('crypto');
 const { MongoClient } = require('mongodb');
 
 const app = express();
-const port = 80;
+const port = 89;
 
 // Conexão com o MongoDB
-const uri = 'mongodb://localhost:27017';
+const uri = 'mongodb://26.138.203.133:27017';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Middlewares
