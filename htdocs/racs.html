@@ -1,0 +1,62 @@
+<html>
+<head>
+    <title>RAC Virtual - Metha Equipamentos</title>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+    * {
+        font-family: 'Montserrat'
+
+    }
+
+    .titulo {
+        text-align: center;
+    }
+
+    .reg-racs {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .tabela-racs tr, th, td {padding: 10px;}
+</style>
+
+<body>
+    <h1 class="titulo">Relatórios de Atendimento ao Cliente:</h1>
+    
+    <div class="reg-racs">
+        <table id="tabela-racs">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Razão Social</th>
+                    <th>CNPJ</th>
+                    <th>Endereço</th>
+                    <th>Cidade</th>
+                    <th>Setor</th>
+                    <th>Técnico</th>
+                    <th>Responsável</th>
+                    <th>Início At.</th>
+                    <th>Término At.</th>
+                </tr>
+            </thead>
+            <tbody id="corpo-tabela"></tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Requisição AJAX para obter os dados dos racs do servidor
+            $.get('/racs-json', function(data) {
+                // Para cada item nos dados recebidos, adicione uma linha na tabela
+                data.forEach(function(item) {
+                    $('#corpo-tabela').append('<tr><td>' + item.data + '</td><td>' + item.razao_social + '</td><td>' + item.cnpj + '</td><td>' + item.endereco + '</td><td>' + item.cidade + '</td><td>' + item.setor + '</td><td>' + item.tecnico + '</td><td>' + item.responsavel + '</td><td>' + item.hora_ini + '</td><td>' + item.hora_fim + '</td><td>' + item.instalacao_equip + '</td><td>');
+                }); 
+            });
+        });
+    </script>
+</body>
+</html>
