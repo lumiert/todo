@@ -30,6 +30,24 @@ async function connectMongo() {
 }
 connectMongo();
 
+app.get('/', (req, res) => {
+    try {
+        res.redirect('/login');
+    } catch(err) {
+        console.log(err);
+        res.status(500).send('Erro interno do servidor');
+    }
+});
+
+app.get('/login', (req, res) => {
+    try {
+        res.sendFile(path.join(__dirname, './htdocs/login/login.html'));
+    } catch(err) {
+        console.error('Erro de rota: login. Erro: ', err);
+        res.status(500).send('Erro interno do servidor');
+    }
+});
+
 app.get('/racs', async (req, res) => {
     try {
         const database = client.db('RACS');
