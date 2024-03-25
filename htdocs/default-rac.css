@@ -1,0 +1,86 @@
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+    * {
+        font-family: 'Montserrat'
+    }
+
+    .navbar {
+        background-image: linear-gradient(90deg, rgb(51, 81, 121), rgb(12, 29, 54));
+        display: flex;
+        text-align: justify;
+        align-items: center;
+        align-content: space-between;
+        width: 100%;
+        height: 64px;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .titulo {
+        text-align: center;
+    }
+
+    .reg-racs {
+        margin: 0 auto;
+        text-align: center;
+        width: 95vw;
+        overflow: scroll;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    tr {
+        box-shadow: 0px 0px 3px 0.1pt rgb(0, 0, 0);
+    }
+
+    tr, th, td {
+        padding: 10px;
+        width: 500px;
+    }
+
+    .green-button, .red-button, .blue-button {
+        display: flex;
+        padding: 12px;
+    }
+
+    .green-button {
+        background-image: linear-gradient(45deg, #0cc773, #347055);
+        color: white;
+        border-radius: 15px;
+    }
+
+    .blue-button {
+        background-image: linear-gradient(45deg, #0c57c7, #345870);
+        color: white;
+        border-radius: 15px;
+    }
+
+    .red-button {
+        background-image: linear-gradient(45deg, #c70c0c, #704f34);
+        color: white;
+        border-radius: 15px;
+    }
+
+    .modal-bg {
+        background-color: rgba(14, 15, 27, 0.822);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+    }
+    .modal {
+        background-color: white;
+        width: 50%;
+        height: 50%;
+        transform-origin: -50%, -50%;
+        text-align: center;
+    }
+
+    .text-nb {
+        color: white;
+
+    }

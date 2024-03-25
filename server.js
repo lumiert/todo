@@ -77,6 +77,10 @@ app.get('/racs-json', async (req, res) => {
     }
 });
 
+app.get('/nova-rac', async (req, res) => {
+    res.sendFile(path.join(__dirname, './htdocs/nova-rac.html'));
+});
+
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });
