@@ -1,7 +1,60 @@
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
     * {
-        font-family: 'Montserrat'
+        font-family: 'Montserrat';
+        /*border: red solid 1px;*/
+    }
+
+    input[type="checkbox"] {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        -webkit-appearance: none;
+        border: 2px solid #333;
+        border-radius: 50%;
+        cursor: pointer;
+        user-select: none;
+    }
+    
+    @media screen and (max-width: 1200px) {
+        .form-nova-rac, .form-nova-rac input {
+            font-size: 32px;
+        }
+        input[type="checkbox"] {
+            width: 64px;
+            height: 64px;
+        }
+    }
+
+    .not-black, .not-black p {
+        color: #464646;
+    }
+
+    .blue-gradient {
+        background-image: linear-gradient(0deg, rgb(220, 222, 231), #f6faff);
+    }
+
+    .v-spacer {
+        padding-block: 32px;
+    }
+
+    .h-spacer {
+        padding-inline: 32px;
+    }
+
+    .centered {
+        text-align: center;
+    }
+
+    .date::after {
+        content: '⌚'; /* Você pode usar um emoji de relógio ou outro símbolo */
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer; /* O cursor muda para indicar que é clicável */
     }
 
     .navbar {
@@ -14,10 +67,41 @@
         height: 64px;
     }
 
+    input:disabled {
+        background-color: rgb(255, 207, 225);
+        color: rgb(250, 78, 141);
+        text-align: center;
+    }
+
+    input[type="text"] {
+        box-shadow: 0 0 8px rgba(14, 15, 27, 0.342);
+        border: none;
+    }
+
+    input[type="checkbox"]:checked {
+        background-color: #333;
+        box-shadow: 0 0 10px rgba(14, 15, 27, 0.342);
+        user-select: none;
+    }
+
+    input[type="checkbox"]:focus {
+        outline: none;
+        user-select: none;
+    }
+
     body {
         margin: 0;
     }
 
+    .form-nova-rac {
+        display: grid;
+        grid-template-columns: 400px 400px;
+        justify-content: center;
+    }
+    
+    .form-nova-rac input {
+        margin-block: 10px;
+    }
     .titulo {
         text-align: center;
     }
@@ -42,8 +126,12 @@
         width: 500px;
     }
 
+    .mobile-font-medium {
+        font-size: 32px;
+    }
+
     .green-button, .red-button, .blue-button {
-        display: flex;
+        display: inline-block;
         padding: 12px;
     }
 

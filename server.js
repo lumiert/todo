@@ -77,8 +77,8 @@ app.get('/racs-json', async (req, res) => {
     }
 });
 
-app.get('/nova-rac', async (req, res) => {
-    res.sendFile(path.join(__dirname, './htdocs/nova-rac.html'));
+app.get('/novo-rac', async (req, res) => {
+    res.sendFile(path.join(__dirname, './htdocs/novo-rac.html'));
 });
 
 app.listen(port, () => {

@@ -1,0 +1,86 @@
+<html>
+<head>
+    <title>RAC Virtual - Metha Equipamentos</title>
+    <link rel="stylesheet" href="default-rac.css">
+    <meta name="viewport" content="user-scalable=no">
+</head>
+
+<body class="blue-gradient not-black">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <h1 class="titulo v-spacer">Novo RAC:</h1>
+    
+    <div class="form-nova-rac">
+    <p>Data: </p><input placeholder="__/__/____" class="date" id="data" type="text">
+    <p>Razão Social: </p><input type="text" oninput="this.value = this.value.toUpperCase()">
+    <p>CNPJ: </p><input placeholder="_____/____-__" class="cnpj" type="text">
+    <p>Endereço: </p><input placeholder="Rua, Número..." type="text" id="enadereco">
+    <p>Cidade: </p><input type="text">
+    <p>Setor: </p><input type="text">
+    <p>Técnico: </p><input type="text">
+    <p>Responsável: </p><input type="text">
+    <p>Início At.: </p><input placeholder="00:00" class="hour" type="text">
+    <p>Término At.: </p><input placeholder="00:00" class="hour" type="text">
+    <p>Instalação: </p><input type="checkbox">
+    <p>Manutenção: </p><input type="checkbox">
+    <p>Treinamento: </p><input type="checkbox">
+    <p>Impl. Sistemas: </p><input type="checkbox">
+    <p>Man. Preventiva: </p><input type="checkbox">
+    <p>Outros: </p><input type="text">
+    <p>Relógio: </p><input type="text">
+    <p>Catraca: </p><input type="text">
+    <p>Nº de Série: </p><input type="text">
+    <p>Obs.: </p><input type="text">
+    <p>Troca de Componente: </p><input type="text">
+    <p>Conf. Proposta?: </p><input id='confprop' type="checkbox" onchange="confProposta();">
+    <p>Total: R$ </p><input class="money" id="total" type="text">
+    </div>
+
+    <div class="centered">
+    <a class="blue-button mobile-font-medium v-spacer" onclick="racCriado();">Seguinte</a>
+    </div>
+
+    <script>
+
+        const data = document.getElementById('data');
+        const diaAtual = new Date();
+
+        const dia = diaAtual.getDate().toString().padStart(2, '0');
+        const mes = (diaAtual.getMonth() + 1).toString().padStart(2, '0');
+        const ano = diaAtual.getFullYear();
+        const dataFormatada = `${dia}/${mes}/${ano}`;
+
+        data.value = dataFormatada;
+
+        function racCriado() {
+            
+        }
+
+        function confProposta() {
+            const confprop = document.getElementById('confprop');
+            const total = document.getElementById('total');
+
+            if (confprop.checked) {
+                total.disabled = true;
+                total.value = "PROPOSTA";
+            } else {
+                total.disabled = false;
+                total.value = " ";
+            }
+        }
+
+        $(document).ready(function(){
+            $('.date').mask('00/00/0000');
+            $('.hour').mask('00:00');
+            $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+            $('.money').mask('000.000.000.000.000,00', {reverse: true});
+        });
+
+
+    </script>
+
+</body>
+
+
+
+</html>
