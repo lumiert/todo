@@ -1,0 +1,165 @@
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+    * {
+        font-family: 'Montserrat';
+        /*border: red solid 1px;*/
+    }
+
+    input[type="checkbox"] {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        -webkit-appearance: none;
+        border: 2px solid #333;
+        border-radius: 50%;
+        cursor: pointer;
+        user-select: none;
+    }
+    
+    @media screen and (max-width: 1200px) {
+        .form-nova-rac, .form-nova-rac input {
+            font-size: 32px;
+        }
+        input[type="checkbox"] {
+            width: 64px;
+            height: 64px;
+        }
+    }
+
+    .not-black, .not-black p {
+        color: #464646;
+    }
+
+    .blue-gradient {
+        background-image: linear-gradient(0deg, rgb(220, 222, 231), #f6faff);
+    }
+
+    .v-spacer {
+        padding-block: 32px;
+    }
+
+    .h-spacer {
+        padding-inline: 32px;
+    }
+
+    .centered {
+        text-align: center;
+    }
+
+
+
+    .navbar {
+        background-image: linear-gradient(90deg, rgb(51, 81, 121), rgb(12, 29, 54));
+        display: flex;
+        text-align: justify;
+        align-items: center;
+        align-content: space-between;
+        width: 100%;
+        height: 64px;
+    }
+
+    input:disabled {
+        background-color: rgb(255, 207, 225);
+        color: rgb(250, 78, 141);
+        text-align: center;
+    }
+
+    input[type="text"] {
+        box-shadow: 0 0 8px rgba(14, 15, 27, 0.342);
+        border: none;
+    }
+
+    input[type="checkbox"]:checked {
+        background-color: #333;
+        box-shadow: 0 0 10px rgba(14, 15, 27, 0.342);
+        user-select: none;
+    }
+
+    input[type="checkbox"]:focus {
+        outline: none;
+        user-select: none;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .form-nova-rac {
+        display: grid;
+        grid-template-columns: 400px 400px;
+        justify-content: center;
+    }
+    
+    .form-nova-rac input {
+        margin-block: 10px;
+    }
+    .titulo {
+        text-align: center;
+    }
+
+    .reg-racs {
+        margin: 0 auto;
+        text-align: center;
+        width: 95vw;
+        overflow: scroll;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    tr {
+        box-shadow: 0px 0px 3px 0.1pt rgb(0, 0, 0);
+    }
+
+    tr, th, td {
+        padding: 10px;
+        width: 500px;
+    }
+
+    .mobile-font-medium {
+        font-size: 32px;
+    }
+
+    .green-button, .red-button, .blue-button {
+        display: inline-block;
+        padding: 12px;
+    }
+
+    .green-button {
+        background-image: linear-gradient(45deg, #0cc773, #347055);
+        color: white;
+        border-radius: 15px;
+    }
+
+    .blue-button {
+        background-image: linear-gradient(45deg, #0c57c7, #345870);
+        color: white;
+        border-radius: 15px;
+    }
+
+    .red-button {
+        background-image: linear-gradient(45deg, #c70c0c, #704f34);
+        color: white;
+        border-radius: 15px;
+    }
+
+    .modal-bg {
+        background-color: rgba(14, 15, 27, 0.822);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+    }
+    .modal {
+        background-color: white;
+        width: 50%;
+        height: 50%;
+        transform-origin: -50%, -50%;
+        text-align: center;
+    }
+
+    .text-nb {
+        color: white;
+
+    }
