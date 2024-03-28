@@ -1,35 +1,18 @@
 <html>
 <head>
     <title>RAC Virtual - Metha Equipamentos</title>
+    <link rel="stylesheet" href="default-rac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-    * {
-        font-family: 'Montserrat'
-
-    }
-
-    .titulo {
-        text-align: center;
-    }
-
-    .reg-racs {
-        margin: 0 auto;
-        text-align: center;
-        width: 90vw;
-        overflow: scroll;
-    }
-
-    .tabela-racs tr, th, td {
-        padding: 10px;
-    }
-</style>
-
 <body>
+    <div class="navbar">   
+        <h1 class="text-nb">Usuário</h1><img src="public-images/no-photo.jpg" style="border-radius: 50%; width: 48px;">
+
+    </div>
+
     <h1 class="titulo">Relatórios de Atendimento ao Cliente:</h1>
-    
+
     <div class="reg-racs">
         <table id="tabela-racs">
             <thead>
@@ -57,20 +40,31 @@
                     <th>Troca de Componente</th>
                     <th>Conf. Proposta?</th>
                     <th>Total</th>
+                    <th>Funções</th>
                 </tr>
             </thead>
             <tbody id="corpo-tabela"></tbody>
         </table>
     </div>
 
+    <div class="modal-bg" hidden>
+        <div class="modal">
+            <h1>Editar/Criar</h1>
+            
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
             // Requisição AJAX para obter os dados dos racs do servidor
+            
             $.get('/racs-json', function(data) {
-                // Para cada item nos dados recebidos, adicione uma linha na tabela
+                
                 data.forEach(function(item) {
-                    $('#corpo-tabela').append('<tr><td>' + item.data + '</td><td>' + item.razao_social + '</td><td>' + item.cnpj + '</td><td>' + item.endereco + '</td><td>' + item.cidade + '</td><td>' + item.setor + '</td><td>' + item.tecnico + '</td><td>' + item.responsavel + '</td><td>' + item.hora_ini + '</td><td>' + item.hora_fim + '</td><td>' + item.instalacao_equip + '</td><td>' + item.manutencao_equip + '</td><td>' + item.treinamento + '</td><td>' + item.ipl_sis + '</td><td>' + item.manutencao_prev + '</td><td>' + item.outros + '</td><td>' + item.relogio + '</td><td>' + item.catraca + '</td><td>' + item.n_serie + '</td><td>' + item.obs + '</td><td>' + item.troca_de_componente + '</td><td>' + item.total_conforme_proposta + '</td><td>' + 'R$' + item.total + '</td>');
+                    
+                    var checked = '&#10003';
+                    var not_checked = '&#x2715;';
+                    $('#corpo-tabela').append('<tr><td>' + item.data + '</td><td>' + item.razao_social + '</td><td>' + item.cnpj + '</td><td>' + item.endereco + '</td><td>' + item.cidade + '</td><td>' + item.setor + '</td><td>' + item.tecnico + '</td><td>' + item.responsavel + '</td><td>' + item.hora_ini + '</td><td>' + item.hora_fim + '</td><td>' + (item.instalacao_equip ? checked : not_checked) + '</td><td>' + (item.manutencao_equip ? checked : not_checked) + '</td><td>' + (item.treinamento ? checked : not_checked) + '</td><td>' + (item.ipl_sis ? checked : not_checked) + '</td><td>' + (item.manutencao_prev ? checked : not_checked) + '</td><td>' + item.outros + '</td><td>' + item.relogio + '</td><td>' + item.catraca + '</td><td>' + item.n_serie + '</td><td>' + item.obs + '</td><td>' + item.troca_de_componente + '</td><td>' + (item.total_conforme_proposta ? checked : not_checked) + '</td><td>' + 'R$' + item.total + '</td><th>' + '<a class="blue-button">Editar</a> <a class="green-button">Finalizar</a> <a class="red-button">Cancelar</a>'  + '</th>');
                 }); 
             });
         });

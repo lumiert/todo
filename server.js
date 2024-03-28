@@ -77,6 +77,10 @@ app.get('/racs-json', async (req, res) => {
     }
 });
 
+app.get('/novo-rac', async (req, res) => {
+    res.sendFile(path.join(__dirname, './htdocs/novo-rac.html'));
+});
+
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });
